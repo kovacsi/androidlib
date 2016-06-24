@@ -14,6 +14,7 @@ public class FunctionalTests extends AndroidTestCase {
     
     @Test
     public void test() {
+        Hello.hello();
     }
 
 }

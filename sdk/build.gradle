@@ -1,5 +1,4 @@
 apply plugin: 'com.android.library'
-//apply from: 'maven-push.gradle'
 
 ext {
     bintrayRepo = 'maven'
@@ -14,7 +13,7 @@ ext {
     siteUrl = 'https://github.com/kovacsi/androidlib'
     gitUrl = 'https://github.com/kovacsi/androidlib.git'
 
-    libraryVersion = '0.0.1'
+    libraryVersion = '0.0.2'
 
     developerId = 'kovacsi'
     developerName = 'Istvan Kovacs'
@@ -49,16 +48,6 @@ dependencies {
     compile 'com.google.code.gson:gson:2.3.1'
     compile 'com.squareup.okhttp:okhttp:2.7.5'
     compile 'junit:junit:4.12'
-}
-
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.0'
-        classpath 'com.github.dcendents:android-maven-plugin:1.2'
-    }
 }
 
 apply from: 'installv1.gradle'
