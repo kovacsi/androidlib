@@ -1,25 +1,26 @@
-language: objective-c
-xcode_project: EmarsysPredictSDK.xcodeproj
-xcode_scheme: EmarsysPredictSDK
-osx_image: xcode7.2
-sudo: false
-notifications:
-  email:
-    - dev@scarabresearch.com
-env:
-  global:
-  - LC_CTYPE=en_US.UTF-8
-  - LANG=en_US.UTF-8
-  - APP_NAME="EmarsysPredictSDK"
-  - PROFILE_NAME="EmarsysPredictSDK"
-script:
-  - set -o pipefail
-  - xctool test -project EmarsysPredictSDK.xcodeproj -scheme EmarsysPredictSDK -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
-  - xctool -project EmarsysPredictSDK.xcodeproj -scheme EmarsysPredictSDK -sdk iphoneos -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
-  - xctool -project EmarsysPredictSDK.xcodeproj -scheme EmarsysPredictSDK -sdk iphonesimulator -configuration Release OBJROOT=$PWD/build SYMROOT=$PWD/build ONLY_ACTIVE_ARCH=NO 'CODE_SIGN_RESOURCE_RULES_PATH=$(SDKROOT)/ResourceRules.plist'
-after_script:
-  - ./scripts/deploy.sh
-after_failure:
-  - cat -n ~/Library/Logs/scan/*
-  - cat -n $TMPDIR/com.apple.dt.XCTest-status/Session*.log
-  - cat -n ~/Library/Logs/DiagnosticReports/xctest*.crash
+language: android
+jdk: oraclejdk7
+android:
+  components:
+    # The BuildTools version used by your project
+    - build-tools-22.0.1
+    # The SDK version used to compile your project
+    - android-16
+    # Specify at least one system image,
+    # if you need to run emulator(s) during your tests
+    - sys-img-armeabi-v7a-android-16
+
+before_script:
+  # Create and start emulator
+  - echo no | android create avd --force -n test -t $ANDROID_TARGET --abi $ANDROID_ABI
+  - emulator -avd test -no-skin -no-audio -no-window &
+  - adb wait-for-device
+  - adb shell input keyevent 82 &
+
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+  
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
