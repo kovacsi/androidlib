@@ -1,6 +1,30 @@
 apply plugin: 'com.android.library'
 //apply from: 'maven-push.gradle'
 
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'androidlib'
+
+    publishedGroupId = 'com.github.kovacsi'
+    libraryName = 'androidlib'
+    artifact = 'androidlib'
+
+    libraryDescription = 'Simple test library'
+
+    siteUrl = 'https://github.com/kovacsi/androidlib'
+    gitUrl = 'https://github.com/kovacsi/androidlib.git'
+
+    libraryVersion = '0.0.1'
+
+    developerId = 'kovacsi'
+    developerName = 'Istvan Kovacs'
+    developerEmail = 'kovacs.k.istvan@gmail.com'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
 android {
     compileSdkVersion 16
     buildToolsVersion "22.0.1"
@@ -26,3 +50,6 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.7.5'
     compile 'junit:junit:4.12'
 }
+
+apply from: 'https://raw.githubusercontent.com/kovacsi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/kovacsi/JCenter/master/bintrayv1.gradle'
