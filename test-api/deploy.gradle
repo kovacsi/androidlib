@@ -34,13 +34,19 @@ install {
     }
 }
 
-Properties properties = new Properties()
-File propFile = "${System.properties['user.home']}${File.separator}.gradle${File.separator}bintray.properties" as File
-properties.load(propFile.newDataInputStream())
+//Properties properties = new Properties()
+//File propFile = "${System.properties['user.home']}${File.separator}.gradle${File.separator}bintray.properties" as File
+//properties.load(propFile.newDataInputStream())
+
+def secret = new Properties()
+secret.load(project.file('bintray.properties').newDataInputStream())
 
 bintray {
-    user = properties.getProperty("bintray.user")
-    key = properties.getProperty("bintray.apikey")
+//    user = properties.getProperty("bintray.user")
+//    key = properties.getProperty("bintray.apikey")
+
+    user = secret.user
+    key = secret.apikey
 
     configurations = ['archives']
     pkg {
