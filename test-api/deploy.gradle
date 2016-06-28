@@ -14,7 +14,8 @@ install {
             groupId artifact.groupId
             artifactId artifact.artifactId
             version artifact.version
-            name artifact.artifactId // pom.project.name must be same as bintray.pkg.name
+            // pom.project.name must be same as bintray.pkg.name and MODULE NAME also
+            name artifact.artifactId
             url artifact.siteUrl
             inceptionYear '2016'
             licenses {
