@@ -17,10 +17,18 @@ android {
             testCoverageEnabled = true
         }
     }
+    testVariants.all { variant ->
+        variant.connectedInstrumentTest.doLast {
+            FileTree tree = fileTree(dir: "$connectedInstrumentTest.resultsDir")
+            tree.each {File file ->
+                println file.getText()
+            }
+        }
+    }
 }
 
 task deploy(dependsOn: 'connectedAndroidTest') << {
-    bintrayUpload
+    bintrayUpload.execute()
 }
 
 dependencies {
