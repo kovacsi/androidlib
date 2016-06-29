@@ -8,8 +8,6 @@ artifact.version = '0.0.' + System.env.TRAVIS_BUILD_NUMBER
 version = artifact.version
 group = artifact.groupId
 
-println version
-
 install {
     repositories.mavenInstaller {
         pom.project {

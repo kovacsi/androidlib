@@ -10,9 +10,9 @@ import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 @RunWith(AndroidJUnit4.class)
-public class FunctionalTests {
+public class NullabilityTest {
 
-    private static final String TAG = FunctionalTests.class.getSimpleName();
+    private static final String TAG = NullabilityTest.class.getSimpleName();
 
     @BeforeClass
     public static void beforeClass() {
@@ -31,7 +31,7 @@ public class FunctionalTests {
 
     @Test
     public void t3() {
-        Log.d(TAG, "FunctionalTests 3 log");
+        Log.d(TAG, "NullabilityTest 3 log");
     }
 
 }
