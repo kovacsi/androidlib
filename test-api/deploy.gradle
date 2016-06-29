@@ -38,19 +38,18 @@ install {
 //File propFile = "${System.properties['user.home']}${File.separator}.gradle${File.separator}bintray.properties" as File
 //properties.load(propFile.newDataInputStream())
 
-def secret = new Properties()
-secret.load(project.file('bintray.properties').newDataInputStream())
+//def secret = new Properties()
+//secret.load(project.file('bintray.properties').newDataInputStream())
 
 bintray {
 //    user = properties.getProperty("bintray.user")
 //    key = properties.getProperty("bintray.apikey")
 
     println System.env.apikey
-    println $apikey
     println System.env.TRAVIS_BUILD_NUMBER
 
     user = 'kovacsi'//secret.user
-    key = $apikey//secret.apikey
+    key = System.env.apikey//secret.apikey
 
     configurations = ['archives']
     pkg {
