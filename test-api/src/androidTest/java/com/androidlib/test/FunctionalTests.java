@@ -1,5 +1,6 @@
 package com.androidlib.test;
 
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -24,7 +25,7 @@ public class FunctionalTests {
 
     @Test
     public void t2() {
-        //Assert.fail();
+        Assert.fail();
     }
 
     @Test
