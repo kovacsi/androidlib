@@ -45,6 +45,10 @@ bintray {
 //    user = properties.getProperty("bintray.user")
 //    key = properties.getProperty("bintray.apikey")
 
+    println System.env.apikey
+    println $apikey
+    println System.env.TRAVIS_BUILD_NUMBER
+
     user = 'kovacsi'//secret.user
     key = $apikey//secret.apikey
 
