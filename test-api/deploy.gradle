@@ -4,7 +4,7 @@ apply plugin: 'com.jfrog.bintray'
 def artifact = new Properties()
 artifact.load(project.file('deploy.properties').newDataInputStream())
 
-version = artifact.version
+version = System.env.TRAVIS_BUILD_NUMBER//artifact.version
 group = artifact.groupId
 
 install {
@@ -13,11 +13,11 @@ install {
             packaging 'aar'
             groupId artifact.groupId
             artifactId artifact.artifactId
-            version artifact.version
+            version version//artifact.version
             // pom.project.name must be same as bintray.pkg.name and MODULE NAME also
             name artifact.artifactId
             url artifact.siteUrl
-            inceptionYear '2016'
+            inceptionYear artifact.inceptionYear
             licenses {
                 license {
                     name 'Apache-2.0'
@@ -60,7 +60,7 @@ bintray {
         licenses = artifact.licenses
         publish = true
         version {
-            name = System.env.TRAVIS_BUILD_NUMBER//artifact.version
+            name = version//System.env.TRAVIS_BUILD_NUMBER//artifact.version
         }
     }
 }
