@@ -45,8 +45,8 @@ bintray {
 //    user = properties.getProperty("bintray.user")
 //    key = properties.getProperty("bintray.apikey")
 
-    user = secret.user
-    key = secret.apikey
+    user = 'kovacsi'//secret.user
+    key = $apikey//secret.apikey
 
     configurations = ['archives']
     pkg {
@@ -57,7 +57,7 @@ bintray {
         licenses = artifact.licenses
         publish = true
         version {
-            name = artifact.version
+            name = System.env.TRAVIS_BUILD_NUMBER//artifact.version
         }
     }
 }

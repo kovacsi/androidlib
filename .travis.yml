@@ -1,22 +1,23 @@
 language: android
 jdk: oraclejdk8
+secure: "AAkYf0qyd1ssGxjjF1jfkH+68ReEHu5vcoFEZcJuU9fg3vW1YNmD8SMXqV1hj1ZIz3vb0Bzp1WDVhkT/xOZr1NRxw8g3RtVdtPPB531WQnho2h62Kft9v6vhnZDO+ATQBdqJMnYDHJ7/mT48G7ZgNifLng6G7jjTtmCfdFQY3AXy6VLEV4OMWWZfH0u6CdDF2T6oeRus0i1Jk3nBj6edoBMltBVMhqv/6kD2/pkZU4HV+q6aQmDAXc//ktAsZTjQo5jrZ1g9GSNdXnp6EbI24KkshaRd9hk6MwT23aKZ3yGqFHdvE7B9KiPH3Wvo7ifUSGkjZDOkiyGAtKh5qCVH35j6CbLccvU7xF69E2wRtHxWqgwhK5vdzIgH1rQgl4hMGck9n7H41+MzbMwxoUbKeZ6/U+WHftVUpO1dGH6dk8QkFJIlK/KiVpEaJCn+7d9ieQgbYzn01KbkZh6udL4Wk7modcICLaIu4uPQyILF84oFg0BmavP7ombllGpjDn35ABpNrl218lheFEZgZr9G9xEx97ORdaVIPQp3mMr3O2Mzu+dVwS9Uh8YTO5Y9OohEj86MI2I1WShyYq916kVnqcQCHrVRa4qDFgbdyQxT1lgZHq82BQdMbTkOrNiLWOnVY84AJpQkQDUIj1p1r/xtf6Xme5wWUmye1SYs405Np+8="
 android:
-  components:
-    - build-tools-22.0.1
-    - android-16
-    - extra
-    - sys-img-armeabi-v7a-android-16
-    - sys-img-x86-android-16
+    components:
+        - build-tools-22.0.1
+        - android-16
+        - extra-android-m2repository
+        - sys-img-armeabi-v7a-android-16
+        - sys-img-x86-android-16
 before_script:
-  - echo no | android create avd --force -n test -t android-16 --abi armeabi-v7a
-  - emulator -avd test -no-skin -no-audio -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
+    - echo $apikey
+    - echo no | android create avd --force -n test -t android-16 --abi armeabi-v7a
+    - emulator -avd test -no-skin -no-audio -no-window &
+    - android-wait-for-emulator
+    - adb shell input keyevent 82 &
 script: ./gradlew connectedAndroidTest
 after_script: ./gradlew bintrayUpload
-before_cache:
-  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+before_cache: rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
 cache:
-  directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+    directories:
+        - $HOME/.gradle/caches/
+        - $HOME/.gradle/wrapper/
