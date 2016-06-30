@@ -8,6 +8,13 @@ artifact.version = '0.0.' + System.env.TRAVIS_BUILD_NUMBER
 version = artifact.version
 group = artifact.groupId
 
+task bintrayUploadOnTag() {
+    def tag = System.env.TRAVIS_TAG
+    if (tag != null && tag != "") {
+        dependsOn bintrayUpload
+    }
+}
+
 install {
     repositories.mavenInstaller {
         pom.project {
