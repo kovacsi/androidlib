@@ -3,7 +3,7 @@ apply plugin: 'com.jfrog.bintray'
 
 def artifact = new Properties()
 artifact.load(project.file('deploy.properties').newDataInputStream())
-artifact.version = '0.0.' + System.env.TRAVIS_BUILD_NUMBER
+artifact.version = System.env.TRAVIS_TAG
 
 version = artifact.version
 group = artifact.groupId
