@@ -32,4 +32,9 @@ public class FunctionalTests {
         Log.d(TAG, "FunctionalTests 3 log");
     }
 
+    @Test
+    public void t4() {
+        Hello.hello("Hello");
+    }
+
 }

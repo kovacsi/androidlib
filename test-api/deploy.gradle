@@ -3,12 +3,13 @@ apply plugin: 'com.jfrog.bintray'
 
 def artifact = new Properties()
 artifact.load(project.file('deploy.properties').newDataInputStream())
-artifact.version = System.env.TRAVIS_TAG
-
+if (System.env.TRAVIS_TAG != null) {
+    artifact.version = System.env.TRAVIS_TAG
+}
 version = artifact.version
 group = artifact.groupId
 
-task bintrayUploadOnTag() {
+task bintrayUploadOnTag(dependsOn: 'clean') {
     def tag = System.env.TRAVIS_TAG
     if (tag != null && tag != "") {
         dependsOn bintrayUpload
@@ -64,10 +65,10 @@ task sourcesJar(type: Jar) {
     classifier = 'sources'
 }
 
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
+//task javadoc(type: Javadoc) {
+//    source = android.sourceSets.main.java.srcDirs
+//    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+//}
 
 task javadocJar(type: Jar, dependsOn: javadoc) {
     classifier = 'javadoc'
