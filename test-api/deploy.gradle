@@ -39,6 +39,13 @@ install {
                 developerConnection artifact.gitUrl
                 url artifact.siteUrl
             }
+            description 'Project description'
+            developers {
+                developer {
+                    id ''
+                    name ''
+                }
+            }
         }
     }
 }
