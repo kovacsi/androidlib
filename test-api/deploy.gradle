@@ -26,7 +26,7 @@ install {
             // pom.project.name must be same as bintray.pkg.name and MODULE NAME also
             name artifact.artifactId
             url artifact.siteUrl
-            inceptionYear artifact.inceptionYear
+            inceptionYear '2016'
             licenses {
                 license {
                     name 'Apache-2.0'
@@ -42,8 +42,8 @@ install {
             description 'Project description'
             developers {
                 developer {
-                    id ''
-                    name ''
+                    id 'kovacsi'
+                    name 'Istvan Kovacs'
                 }
             }
         }
