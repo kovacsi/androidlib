@@ -48,7 +48,7 @@ dependencies {
     javadocDeps 'com.google.code.gson:gson:2.3.1'
     javadocDeps 'com.squareup.okhttp:okhttp:2.7.5'
     androidTestCompile 'junit:junit:4.12'
-    androidTestCompile 'com.android.support.test:runner:0.3'
+    androidTestCompile 'com.android.support.test:runner:0.4'
 }
 
 task javadoc(type: Javadoc) {
