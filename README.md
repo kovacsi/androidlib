@@ -1,1 +1,1 @@
-# Test
+[![Coverage Status](https://coveralls.io/repos/github/kovacsi/androidlib/badge.svg?branch=master)](https://coveralls.io/github/kovacsi/androidlib?branch=master)
